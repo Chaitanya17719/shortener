@@ -48,3 +48,16 @@ def redirect_url(request, code):
 
     except URL.DoesNotExist:
         return JsonResponse({"error": "Invalid URL"})
+    
+def get_stats(request, code):
+    try:
+        obj = URL.objects.get(short_code=code)
+
+        return JsonResponse({
+            "original_url": obj.original_url,
+            "clicks": obj.clicks,
+            "created_at": obj.created_at
+        })
+
+    except URL.DoesNotExist:
+        return JsonResponse({"error": "Not found"})
