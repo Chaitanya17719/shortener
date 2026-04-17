@@ -5,7 +5,10 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import URL
 from .utils import generate_code
 import json
+from django.shortcuts import render
 
+def home(request):
+    return render(request, 'index.html')
 
 @csrf_exempt
 def shorten_url(request):
