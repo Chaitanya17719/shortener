@@ -28,7 +28,7 @@ def shorten_url(request):
             )
 
             return JsonResponse({
-                "short_url": f"http://127.0.0.1:8000/{code}"
+                "short_url": f"{request.scheme}://{request.get_host()}/{code}"
             })
 
         except Exception as e:
